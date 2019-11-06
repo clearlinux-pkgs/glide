@@ -4,7 +4,7 @@
 #
 Name     : glide
 Version  : 0.13.3
-Release  : 3
+Release  : 4
 URL      : https://github.com/Masterminds/glide/archive/v0.13.3/glide-0.13.3.tar.gz
 Source0  : https://github.com/Masterminds/glide/archive/v0.13.3/glide-0.13.3.tar.gz
 Summary  : No detailed summary available
@@ -38,38 +38,39 @@ license components for the glide package.
 
 %prep
 %setup -q -n glide-0.13.3
+cd %{_builddir}/glide-0.13.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568657805
+export SOURCE_DATE_EPOCH=1573073045
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
 export FFLAGS="$CFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 ## make_prepend content
-export GOPATH=/go
-mkdir -p /go/src/github.com/Masterminds
-ln -s /builddir/build/BUILD/glide-%{version} /go/src/github.com/Masterminds/glide
-pushd /go/src/github.com/Masterminds/glide
+export GOPATH=$HOME/go
+mkdir -p $HOME/go/src/github.com/Masterminds
+ln -s /builddir/build/BUILD/glide-%{version} $HOME/go/src/github.com/Masterminds/glide
+pushd $HOME/go/src/github.com/Masterminds/glide
 ## make_prepend end
-make  %{?_smp_mflags} build
+make  %{?_smp_mflags}  build
 
 
 %install
-export SOURCE_DATE_EPOCH=1568657805
+export SOURCE_DATE_EPOCH=1573073045
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/glide
-cp LICENSE %{buildroot}/usr/share/package-licenses/glide/LICENSE
-cp vendor/github.com/Masterminds/semver/LICENSE.txt %{buildroot}/usr/share/package-licenses/glide/vendor_github.com_Masterminds_semver_LICENSE.txt
-cp vendor/github.com/Masterminds/vcs/LICENSE.txt %{buildroot}/usr/share/package-licenses/glide/vendor_github.com_Masterminds_vcs_LICENSE.txt
-cp vendor/github.com/codegangsta/cli/LICENSE %{buildroot}/usr/share/package-licenses/glide/vendor_github.com_codegangsta_cli_LICENSE
-cp vendor/github.com/mitchellh/go-homedir/LICENSE %{buildroot}/usr/share/package-licenses/glide/vendor_github.com_mitchellh_go-homedir_LICENSE
-cp vendor/gopkg.in/yaml.v2/LICENSE %{buildroot}/usr/share/package-licenses/glide/vendor_gopkg.in_yaml.v2_LICENSE
-cp vendor/gopkg.in/yaml.v2/LICENSE.libyaml %{buildroot}/usr/share/package-licenses/glide/vendor_gopkg.in_yaml.v2_LICENSE.libyaml
+cp %{_builddir}/glide-0.13.3/LICENSE %{buildroot}/usr/share/package-licenses/glide/aeb2d0a3685ac37123415310f5ba45dc4bbfc311
+cp %{_builddir}/glide-0.13.3/vendor/github.com/Masterminds/semver/LICENSE.txt %{buildroot}/usr/share/package-licenses/glide/19faac93bab978326d06e3b96bbf41d495ce2a51
+cp %{_builddir}/glide-0.13.3/vendor/github.com/Masterminds/vcs/LICENSE.txt %{buildroot}/usr/share/package-licenses/glide/19faac93bab978326d06e3b96bbf41d495ce2a51
+cp %{_builddir}/glide-0.13.3/vendor/github.com/codegangsta/cli/LICENSE %{buildroot}/usr/share/package-licenses/glide/62e85c543bad57a03eff756c0cfcb4bd26b77a4a
+cp %{_builddir}/glide-0.13.3/vendor/github.com/mitchellh/go-homedir/LICENSE %{buildroot}/usr/share/package-licenses/glide/5ad2002bc8d2b22e2034867d159f71ba6258e18f
+cp %{_builddir}/glide-0.13.3/vendor/gopkg.in/yaml.v2/LICENSE %{buildroot}/usr/share/package-licenses/glide/9522d95b2b9b284285cc3fb6ecc445aa3ee5e785
+cp %{_builddir}/glide-0.13.3/vendor/gopkg.in/yaml.v2/LICENSE.libyaml %{buildroot}/usr/share/package-licenses/glide/ad00ce7340d89dc13ccc59920ef75cb55af5b164
 true
 ## install_append content
 install -d %{buildroot}/usr/bin
@@ -85,10 +86,9 @@ install -p -m 755 glide %{buildroot}/usr/bin/glide
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/glide/LICENSE
-/usr/share/package-licenses/glide/vendor_github.com_Masterminds_semver_LICENSE.txt
-/usr/share/package-licenses/glide/vendor_github.com_Masterminds_vcs_LICENSE.txt
-/usr/share/package-licenses/glide/vendor_github.com_codegangsta_cli_LICENSE
-/usr/share/package-licenses/glide/vendor_github.com_mitchellh_go-homedir_LICENSE
-/usr/share/package-licenses/glide/vendor_gopkg.in_yaml.v2_LICENSE
-/usr/share/package-licenses/glide/vendor_gopkg.in_yaml.v2_LICENSE.libyaml
+/usr/share/package-licenses/glide/19faac93bab978326d06e3b96bbf41d495ce2a51
+/usr/share/package-licenses/glide/5ad2002bc8d2b22e2034867d159f71ba6258e18f
+/usr/share/package-licenses/glide/62e85c543bad57a03eff756c0cfcb4bd26b77a4a
+/usr/share/package-licenses/glide/9522d95b2b9b284285cc3fb6ecc445aa3ee5e785
+/usr/share/package-licenses/glide/ad00ce7340d89dc13ccc59920ef75cb55af5b164
+/usr/share/package-licenses/glide/aeb2d0a3685ac37123415310f5ba45dc4bbfc311

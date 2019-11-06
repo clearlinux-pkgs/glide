@@ -1,4 +1,4 @@
-export GOPATH=/go
-mkdir -p /go/src/github.com/Masterminds
-ln -s /builddir/build/BUILD/glide-%{version} /go/src/github.com/Masterminds/glide
-pushd /go/src/github.com/Masterminds/glide
+export GOPATH=$HOME/go
+mkdir -p $HOME/go/src/github.com/Masterminds
+ln -s /builddir/build/BUILD/glide-%{version} $HOME/go/src/github.com/Masterminds/glide
+pushd $HOME/go/src/github.com/Masterminds/glide
